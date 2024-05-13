@@ -1,18 +1,41 @@
-import { Rating } from './Rating'
-import './RatingFilter.css'
+import React, { useContext } from 'react';
+import { SearchContext } from '/Users/martinsolorio/Desktop/easydonate/solorio_ED-Challenge-main/src/contexts/SearchContext/index.jsx'; // Update the import path
+import './RatingFilter.css';
 
-function RatingFilter () {
-    return (
-        <div className='RatingFilterContainer'>
-            <h2>Rates:</h2>
-            <div className='RatingsContainer'>
-                <Rating stars={4} />
-                <Rating stars={3} />
-                <Rating stars={2} />
-                <Rating stars={1} />
-            </div>
-        </div>
-    )
+function RatingFilter() {
+  const { selectedRating, handleRatingChange } = useContext(SearchContext);
+
+  const handleInputChange = (rating) => {
+    handleRatingChange(rating);
+  };
+
+  return (
+    <div className='RatingFilterContainer'>
+      <h2>Rating:</h2>
+      <div className='RatingsContainer'>
+        <span
+          className={selectedRating >= 1 ? 'StarIcon active' : 'StarIcon'}
+          onClick={() => handleInputChange(1)}
+        >★</span>
+        <span
+          className={selectedRating >= 2 ? 'StarIcon active' : 'StarIcon'}
+          onClick={() => handleInputChange(2)}
+        >★</span>
+        <span
+          className={selectedRating >= 3 ? 'StarIcon active' : 'StarIcon'}
+          onClick={() => handleInputChange(3)}
+        >★</span>
+        <span
+          className={selectedRating >= 4 ? 'StarIcon active' : 'StarIcon'}
+          onClick={() => handleInputChange(4)}
+        >★</span>
+        <span
+          className={selectedRating >= 5 ? 'StarIcon active' : 'StarIcon'}
+          onClick={() => handleInputChange(5)}
+        >★</span>
+      </div>
+    </div>
+  );
 }
 
-export { RatingFilter }
+export { RatingFilter };
