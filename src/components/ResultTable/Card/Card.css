@@ -1,0 +1,22 @@
+.CardContainer {
+    border: solid 1px #8B8B8B;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensure each card takes up the same height */
+}
+
+.CardContainer .ProductImageContainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    height: 100%; /* Ensure the image container takes up the full height of the card */
+}
+
+.CardContainer img {
+    max-width: 100%; /* Ensure the image fits inside its container */
+    max-height: 100%; /* Ensure the image fits inside its container */
+    object-fit: contain;
+    mix-blend-mode: color-burn;
+}
