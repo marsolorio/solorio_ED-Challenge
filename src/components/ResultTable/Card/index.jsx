@@ -1,9 +1,10 @@
 import { useContext } from 'react';
-import { Detail } from './Detail'
+import { Detail } from './Detail';
 import { SearchContext } from '../../../contexts/SearchContext';
-import './Card.css'
+import { CartContext } from '../../../contexts/CartContext'; // Import CartContext
+import './Card.css';
 
-function Card({ image, title, price, description }) {
+function Card({ id, image, title, price, description }) {
     const {
         setIsOpen,
         setImageProduct,
@@ -11,6 +12,8 @@ function Card({ image, title, price, description }) {
         setPriceProduct,
         setDescriptionProduct,
     } = useContext(SearchContext);
+
+    const { addToCart, cart, removeFromCart } = useContext(CartContext); // Destructure addToCart and removeFromCart from CartContext
 
     const openModal = () => {
         setIsOpen(true);
@@ -20,11 +23,17 @@ function Card({ image, title, price, description }) {
         setDescriptionProduct(description);
     };
 
-    const addToCart = (event) => {
+    const handleAddToCart = (event) => {
         event.stopPropagation(); // Prevent the click from bubbling to the parent container
-        // Add your logic here to handle adding the item to the cart
-        console.log('Item added to cart:', title);
+        addToCart({ id, image, title, price, description });
     };
+
+    const handleRemoveFromCart = (event) => {
+        event.stopPropagation(); // Prevent the click from bubbling to the parent container
+        removeFromCart(id);
+    };
+
+    const isInCart = cart.some((item) => item.id === id); // Check if the item is in the cart
 
     return (
         <div className='CardContainer' onClick={openModal}>
@@ -35,9 +44,15 @@ function Card({ image, title, price, description }) {
                 title={title}
                 price={price}
             />
-            <button className="AddToCartButton" onClick={addToCart}>
-                Add to Cart
-            </button>
+            {isInCart ? (
+                <button className="RemoveFromCartButton" onClick={handleRemoveFromCart}>
+                    Remove from Cart
+                </button>
+            ) : (
+                <button className="AddToCartButton" onClick={handleAddToCart}>
+                    Add to Cart
+                </button>
+            )}
         </div>
     );
 }
