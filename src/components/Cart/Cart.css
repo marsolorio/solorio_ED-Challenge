@@ -1,0 +1,45 @@
+.CartContainer {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.CartItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.CartItemImage {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+.CartItemDetails {
+  flex: 1;
+}
+
+.CartItemDetails h3 {
+  margin: 0 0 5px 0;
+}
+
+.CartItemDetails p {
+  margin: 0 0 10px 0;
+}
+
+.CartItemDetails button {
+  background-color: #FF3948;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.CartItemDetails button:hover {
+  background-color: #FF6B7B;
+}
